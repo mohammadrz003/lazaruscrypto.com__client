@@ -1,0 +1,14 @@
+.blurCircle1 {
+  -webkit-filter: blur(50px);
+  -moz-filter: blur(50px);
+  -o-filter: blur(50px);
+  -ms-filter: blur(50px);
+  filter: blur(50px);
+  position: absolute;
+  top: 30%;
+  right: 25%;
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  background-color: rgba(89, 206, 143, 0.4);
+}

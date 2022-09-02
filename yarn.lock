@@ -7289,6 +7289,11 @@ react-error-overlay@^6.0.11:
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-6.0.11.tgz#92835de5841c5cf08ba00ddd2d677b6d17ff9adb"
   integrity sha512-/6UZ2qgEyH2aqzYZgQPxEnz33NJ2gNsnHA2o5+o4wW9bLM/JYQitNP9xPhsXwC08hMMovfGe/8retsdDsczPRg==
 
+react-hook-mighty-mouse@1.3.45:
+  version "1.3.45"
+  resolved "https://registry.yarnpkg.com/react-hook-mighty-mouse/-/react-hook-mighty-mouse-1.3.45.tgz#677d0e163de1fed1a56245a7fbf62ea76a88a9de"
+  integrity sha512-afvbyokW8kJ9MOgdqk5RRsLj5u/OEynrrUZQ1sJcct50aWtQmZye0G3mjpaBFje7jqnfzS4BQoMAj2pubo6CtA==
+
 react-icons@^4.4.0:
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-4.4.0.tgz#a13a8a20c254854e1ec9aecef28a95cdf24ef703"
