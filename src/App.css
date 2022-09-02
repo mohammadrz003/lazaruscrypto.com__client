@@ -1,0 +1,10 @@
+@font-face {
+  font-family: "Astraneo";
+  src: url("./assets/fonts/astraneo/Astraneo.eot");
+  src: url("./assets/fonts/astraneo/Astraneo.eot?#iefix")
+      format("embedded-opentype"),
+    url("./assets/fonts/astraneo/Astraneo.woff2") format("woff2"),
+    url("./assets/fonts/astraneo/Astraneo.woff") format("woff"),
+    url("./assets/fonts/astraneo/Astraneo.ttf") format("truetype"),
+    url("./assets/fonts/astraneo/Astraneo.svg") format("svg");
+}
