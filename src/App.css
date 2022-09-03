@@ -30,14 +30,16 @@
   border-radius: 50%;
   height: 100px;
   width: 100px;
-  background-color: #f3efef;
+  background-image: url("./assets/eyes/eye-back.svg");
+  background-repeat: no-repeat;
+  background-size: conver;
 }
 .eyes-follow-tired .container .eyes .eye .pupil {
   position: absolute;
-  background-color: #382e25;
+  /* background-color: #382e25; */
   border-radius: 50%;
-  width: 25px;
-  height: 25px;
+  width: 35px;
+  height: 35px;
   left: 50px;
   top: 35px;
 }

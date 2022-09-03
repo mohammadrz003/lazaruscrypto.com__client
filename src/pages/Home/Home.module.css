@@ -12,3 +12,16 @@
   border-radius: 50%;
   background-color: rgba(89, 206, 143, 0.4);
 }
+
+.candleImg {
+}
+
+.backgroundOverlayDark {
+  background: rgb(25, 26, 25);
+  background: linear-gradient(
+    90deg,
+    rgba(25, 26, 25, 1) 0%,
+    rgba(25, 26, 25, 0.7374300061821604) 60%,
+    rgba(25, 26, 25, 0.5553571770505077) 100%
+  );
+}

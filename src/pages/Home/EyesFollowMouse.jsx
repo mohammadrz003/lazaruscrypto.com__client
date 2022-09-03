@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import useMightyMouse from "react-hook-mighty-mouse";
 
+import eyePupilImage from "../../assets/eyes/eye-pupil.svg";
+
 const EyesFollowMouse = () => {
   const [tiredness, setTiredness] = useState(0);
   const {
@@ -30,15 +32,17 @@ const EyesFollowMouse = () => {
       <div className="container">
         <div className="eyes space-x-5">
           <div id="left-eye" className="eye" style={styleLeftEye}>
-            <div className="pupil" />
+            <img className="pupil" src={eyePupilImage} alt="eye" />
           </div>
           <div id="right-eye" className="eye" style={styleRightEye}>
-            <div className="pupil" />
+            <img className="pupil" src={eyePupilImage} alt="eye" />
           </div>
         </div>
       </div>
       <div className="tiredness">
-        <div className="header hidden">Tiredness: {(tiredness * 50).toFixed(0)}%</div>
+        <div className="header hidden">
+          Tiredness: {(tiredness * 50).toFixed(0)}%
+        </div>
         <input
           type="range"
           className="hidden"
