@@ -3,11 +3,8 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 // import required modules
 import { EffectCards } from "swiper";
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/effect-cards";
 
-import "./styles.css";
+import styles from "./Slider.module.css";
 
 import { posts as dummyPosts } from "../../data/posts";
 
@@ -18,11 +15,11 @@ export default function Slider() {
         effect={"cards"}
         grabCursor={true}
         modules={[EffectCards]}
-        className="mySwiper"
+        className={styles.homeSwiper}
       >
         {dummyPosts.map((post) => {
           return (
-            <SwiperSlide>
+            <SwiperSlide key={post.id} className={styles.homeSwiperSlide}>
               <img
                 className="object-cover w-full h-48 rounded-lg"
                 src={post.image}
@@ -31,7 +28,9 @@ export default function Slider() {
               <span className="font-semibold text-gray-800 text-lg mt-3">
                 {post.date}
               </span>
-              <h4 className="font-bold text-gray-900 text-xl mt-3">{post.title}</h4>
+              <h4 className="font-bold text-gray-900 text-xl mt-3">
+                {post.title}
+              </h4>
             </SwiperSlide>
           );
         })}

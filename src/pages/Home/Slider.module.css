@@ -1,0 +1,15 @@
+.homeSwiper {
+  width: 340px;
+  height: 370px;
+}
+
+.homeSwiperSlide {
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  border-radius: 18px;
+  color: #0d0d0d;
+  background-color: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(24px);
+  overflow: hidden;
+}
