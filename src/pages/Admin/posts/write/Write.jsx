@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./write.css";
+import styles from "./write.module.css";
 import EditorJS from "@editorjs/editorjs";
 import Header from "@editorjs/header";
 import SimpleImage from "@editorjs/simple-image";
@@ -8,8 +8,10 @@ import List from "@editorjs/list";
 
 import { AddGeneralCategory } from "./AddGeneralCategory";
 import { AddPostCategory } from "./AddPostCategory";
-import authenticatedHttp from "../../../services/authenticatedHttpService";
-import { uploadFile } from "../../../services/subsidiaryService";
+import authenticatedHttp from "../../../../services/authenticatedHttpService";
+import { uploadFile } from "../../../../services/subsidiaryService";
+import { TbFileUpload } from "react-icons/tb";
+import { createPost } from "../../../../services/admin/postsServices";
 
 export default function Write() {
   const navigate = useNavigate();
@@ -68,7 +70,7 @@ export default function Write() {
       }
     }
     try {
-      const res = await authenticatedHttp.post("/posts", newPost);
+      const res = await createPost(newPost);
       console.log(`post created: ${res.data}`);
       return navigate("/admin", {
         state: {
@@ -92,50 +94,62 @@ export default function Write() {
   };
 
   return (
-    <section className="dark:bg-palette-dark">
-      <div className="container flex justify-around max-w-screen-xl mx-auto">
-        <AddGeneralCategory />
-        <AddPostCategory
-          categories={categories}
-          setCategories={setCategories}
-        />
-      </div>
-      <div className="write">
-        {file && (
-          <img className="writeImg" src={URL.createObjectURL(file)} alt="" />
-        )}
+    <section
+      className={`${styles.writeContainer} py-10 px-4 w-full bg-[#F7F7F7]`}
+    >
+      <div className="w-full max-w-[800px] mx-auto">
+        <div className="flex justify-around max-w-screen-xl mx-auto">
+          <AddGeneralCategory />
+          <AddPostCategory
+            categories={categories}
+            setCategories={setCategories}
+          />
+        </div>
+        <div className={`${styles.write}`}>
+          {file && (
+            <img
+              className={`${styles.writeImg}`}
+              src={URL.createObjectURL(file)}
+              alt=""
+            />
+          )}
 
-        <form className="writeForm" onSubmit={handleSubmit}>
-          <div className="writeFormGroup">
-            <label htmlFor="fileInput">upload photo</label>
-            <input
-              id="fileInput"
-              type="file"
-              style={{ display: "none" }}
-              onChange={(e) => setFile(e.target.files[0])}
+          <form className={`${styles.writeForm}`} onSubmit={handleSubmit}>
+            <div className={`${styles.writeFormGroup} space-y-5`}>
+              <label className={`${styles.fileInputLabel}`} htmlFor="fileInput">
+                <TbFileUpload className="w-6 h-6 mb-1.5" />
+                <span>{!file ? "upload photo" : "change photo"}</span>
+              </label>
+              <input
+                id="fileInput"
+                type="file"
+                style={{ display: "none" }}
+                onChange={(e) => setFile(e.target.files[0])}
+              />
+              <input
+                className={`${styles.writeInput}`}
+                placeholder="Title"
+                type="text"
+                autoFocus={true}
+                onChange={(e) => setTitle(e.target.value)}
+              />
+              <input
+                className={`${styles.writeInput}`}
+                placeholder="Caption"
+                type="text"
+                onChange={(e) => setCaption(e.target.value)}
+              />
+            </div>
+
+            <article
+              id="richTextEditor"
+              className="prose lg:prose-xl max-w-none"
             />
-            <input
-              className="writeInput"
-              placeholder="Title"
-              type="text"
-              autoFocus={true}
-              onChange={(e) => setTitle(e.target.value)}
-            />
-          </div>
-          <input
-            className="writeInput"
-            placeholder="Caption"
-            type="text"
-            onChange={(e) => setCaption(e.target.value)}
-          />
-          <div
-            id="richTextEditor"
-            className="prose dark:prose-invert lg:prose-xl max-w-none"
-          />
-          <button className="writeSubmit" type="submit">
-            Publish
-          </button>
-        </form>
+            <button className={`${styles.writeSubmit}`} type="submit">
+              Publish
+            </button>
+          </form>
+        </div>
       </div>
     </section>
   );

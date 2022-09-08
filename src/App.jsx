@@ -12,7 +12,9 @@ import Profile from "./pages/Profile/Profile";
 import Blog from "./pages/Blog/Blog";
 import SinglePost from "./pages/SinglePost/SinglePost";
 import Admin from "./pages/Admin/Admin";
-import Write from "./pages/Admin/write/Write";
+import Write from "./pages/Admin/posts/write/Write";
+import ManagePosts from "./pages/Admin/posts/manage-posts/ManagePosts";
+import EditPost from "./pages/Admin/posts/manage-posts/EditPost";
 import "./App.css";
 
 const App = () => {
@@ -27,6 +29,8 @@ const App = () => {
         <Route path="posts/:id" element={<SinglePost />} />
         <Route path="admin" element={<Admin />}>
           <Route path="write-post" element={<Write />}></Route>
+          <Route path="manage-posts" element={<ManagePosts />}></Route>
+          <Route path="manage-posts/edit/:id" element={<EditPost />}></Route>
         </Route>
       </Routes>
       <Toaster />

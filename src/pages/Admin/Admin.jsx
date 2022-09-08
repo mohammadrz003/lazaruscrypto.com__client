@@ -5,6 +5,7 @@ import { useLocation } from "react-router-dom";
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
 import { Toast } from "../../components/toast/Toast";
+import Footer from "./Footer";
 
 const Admin = () => {
   let { state } = useLocation();
@@ -17,7 +18,7 @@ const Admin = () => {
   }, [state?.toastMessage]);
 
   return (
-    <div>
+    <div data-theme="light">
       <Navbar />
       <div className="flex overflow-hidden bg-white pt-16">
         <Sidebar />
@@ -30,10 +31,11 @@ const Admin = () => {
           className="h-full w-full bg-gray-50 relative overflow-y-auto lg:ml-64"
         >
           <main>
-            <div className="pt-6 px-4 min-h-screen">
+            <div className="min-h-screen">
               <Outlet />
             </div>
           </main>
+          <Footer />
         </div>
       </div>
     </div>

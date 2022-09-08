@@ -1,0 +1,77 @@
+.writeContainer {
+  color: initial;
+}
+
+.write {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.writeImg {
+  width: 100%;
+  margin: 0 auto;
+  height: auto;
+  border-radius: 15px;
+  object-fit: cover;
+}
+
+.writeForm {
+  width: 100%;
+}
+
+.writeFormGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1.2rem;
+}
+
+.fileInputLabel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 1rem;
+  border-radius: 0.8rem;
+  text-align: center;
+  padding: 2rem 1rem;
+  border: 2px dashed blue;
+  color: black;
+  cursor: pointer;
+}
+
+.writeInput {
+  border-radius: 15px;
+  font-size: 30px;
+  border: none;
+  padding: 20px;
+  width: 100%;
+}
+.writeInput:focus {
+  border: 1px solid #ccc;
+}
+
+.writeInput::placeholder {
+  color: rgb(189, 185, 185);
+  font-weight: 400;
+}
+
+.writeInput:focus {
+  outline-style: none;
+}
+
+.writeSubmit {
+  width: 100%;
+  color: white;
+  text-align: center;
+  background-color: teal;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  font-weight: 600;
+  align-items: center;
+}

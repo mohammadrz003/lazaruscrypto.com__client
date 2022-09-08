@@ -1,8 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 // Icons
-import { MdArticle } from "react-icons/md";
-import { AiFillFileAdd } from "react-icons/ai";
+import { MdArticle, MdOutlineArticle, MdManageSearch } from "react-icons/md";
 
 const Sidebar = () => {
   return (
@@ -68,7 +67,11 @@ const Sidebar = () => {
                   <div className="collapse-content text-gray-600">
                     <ul className="flex flex-col space-y-3">
                       <li className="flex items-center space-x-2">
-                        <AiFillFileAdd className="w-5 h-5" />
+                        <MdManageSearch className="w-5 h-5" />
+                        <Link to="/admin/manage-posts">Manage Posts</Link>
+                      </li>
+                      <li className="flex items-center space-x-2">
+                        <MdOutlineArticle className="w-5 h-5" />
                         <Link to="/admin/write-post">Add Post</Link>
                       </li>
                     </ul>

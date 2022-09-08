@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { AiOutlinePlus } from "react-icons/ai";
-import authenticatedHttp from "../../../services/authenticatedHttpService";
+import authenticatedHttp from "../../../../services/authenticatedHttpService";
 
 export const AddGeneralCategory = () => {
   const [generalCategory, setGeneralCategory] = useState("");
