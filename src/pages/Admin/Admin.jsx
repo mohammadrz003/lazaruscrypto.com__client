@@ -10,7 +10,10 @@ import Footer from "./Footer";
 const Admin = () => {
   let { state } = useLocation();
 
-  // Show email notification message that it gets when user will be redirected by register page
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   useEffect(() => {
     if (state?.toastMessage) {
       Toast(state.toastMessage.type, state.toastMessage.message);

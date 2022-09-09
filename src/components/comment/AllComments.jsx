@@ -1,12 +1,13 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
-import axios from "axios";
+import React, { useEffect, useRef, useState } from "react";
 import ReactStars from "react-rating-stars-component";
-import noUserPicture from "../../../../assets/icons/userimg.png";
+import toast from "react-hot-toast";
+
+import noUserPicture from "../../assets/icons/userimg.png";
 import { AiOutlineDelete } from "react-icons/ai";
 import { ReplyComment } from "./ReplyComment";
-import authenticatedHttp from "../../../../services/authenticatedHttpService";
+import authenticatedHttp from "../../services/authenticatedHttpService";
 
-export const AllComments = ({ userInformation, post }) => {
+const AllComments = ({ userInformation, post }) => {
   const PF = process.env.REACT_APP_FILE_FOLDER_URL;
   const userImageElementRef = useRef(null);
   const [userImageElement, setUserImageElement] = useState(null);
@@ -22,8 +23,10 @@ export const AllComments = ({ userInformation, post }) => {
         `/comments/delete-comment/${commentId}`
       );
       console.log(data);
+      toast.success("Comment has been deleted.");
       setDeleteCommentReaction(!deleteCommentReaction);
     } catch (error) {
+      toast.error("something went wrong.");
       console.log(error);
     }
   };
@@ -31,9 +34,6 @@ export const AllComments = ({ userInformation, post }) => {
   return (
     <div className="flex flex-col space-y-5">
       {post?.comments?.map((comment) => {
-        {
-          console.log(comment);
-        }
         return (
           <div
             key={comment._id}
@@ -62,7 +62,7 @@ export const AllComments = ({ userInformation, post }) => {
                     value={comment.rate}
                   />
                 </div>
-                {userInformation?.account?._id === comment?.user?._id && (
+                {userInformation?._id === comment?.user?._id && (
                   <button
                     onClick={() => deleteCommentHandler(comment._id)}
                     className="cursor-pointer"
@@ -122,8 +122,7 @@ export const AllComments = ({ userInformation, post }) => {
                             Reply On: {replyComment.replyOnUser.name}
                           </p>
                         </div>
-                        {userInformation?.account?._id ===
-                          replyComment?.user?._id && (
+                        {userInformation?._id === replyComment?.user?._id && (
                           <button
                             onClick={() =>
                               deleteCommentHandler(replyComment._id)
@@ -167,3 +166,5 @@ export const AllComments = ({ userInformation, post }) => {
     </div>
   );
 };
+
+export default AllComments;

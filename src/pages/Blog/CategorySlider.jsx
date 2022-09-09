@@ -31,12 +31,12 @@ const CategorySlider = () => {
         </li>
       </ul>
       <div>
-        <select className="select max-w-max">
-          <option disabled selected>
+        <select defaultValue={"DEFAULT"} className="select max-w-max">
+          <option value="DEFAULT" disabled>
             Filtered By
           </option>
-          <option>Older</option>
-          <option>Newer</option>
+          <option value="older">Older</option>
+          <option value="newer">Newer</option>
         </select>
       </div>
     </div>

@@ -72,7 +72,7 @@ export default function Write() {
     try {
       const res = await createPost(newPost);
       console.log(`post created: ${res.data}`);
-      return navigate("/admin", {
+      return navigate("/admin/manage-posts", {
         state: {
           toastMessage: {
             type: "success",
@@ -82,7 +82,7 @@ export default function Write() {
       });
     } catch (error) {
       console.log(error);
-      return navigate("/admin", {
+      return navigate("/admin/manage-posts", {
         state: {
           toastMessage: {
             type: "error",
@@ -98,8 +98,7 @@ export default function Write() {
       className={`${styles.writeContainer} py-10 px-4 w-full bg-[#F7F7F7]`}
     >
       <div className="w-full max-w-[800px] mx-auto">
-        <div className="flex justify-around max-w-screen-xl mx-auto">
-          <AddGeneralCategory />
+        <div className="mb-4">
           <AddPostCategory
             categories={categories}
             setCategories={setCategories}

@@ -15,7 +15,9 @@ import Admin from "./pages/Admin/Admin";
 import Write from "./pages/Admin/posts/write/Write";
 import ManagePosts from "./pages/Admin/posts/manage-posts/ManagePosts";
 import EditPost from "./pages/Admin/posts/manage-posts/EditPost";
+import ManageComments from "./pages/Admin/comments/ManageComments";
 import "./App.css";
+import Dashboard from "./pages/Admin/Dashboard";
 
 const App = () => {
   return (
@@ -26,11 +28,13 @@ const App = () => {
         <Route path="login" element={<Login />} />
         <Route path="profile" element={<Profile />} />
         <Route path="posts" element={<Blog />} />
-        <Route path="posts/:id" element={<SinglePost />} />
+        <Route path="post/:id" element={<SinglePost />} />
         <Route path="admin" element={<Admin />}>
+          <Route index element={<Dashboard />}></Route>
           <Route path="write-post" element={<Write />}></Route>
           <Route path="manage-posts" element={<ManagePosts />}></Route>
           <Route path="manage-posts/edit/:id" element={<EditPost />}></Route>
+          <Route path="manage-comments" element={<ManageComments />}></Route>
         </Route>
       </Routes>
       <Toaster />

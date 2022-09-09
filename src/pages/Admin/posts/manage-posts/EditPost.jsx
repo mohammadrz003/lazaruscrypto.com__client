@@ -1,40 +1,27 @@
-import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "./singlePost.css";
-import { AiOutlinePlus } from "react-icons/ai";
 import EditorJS from "@editorjs/editorjs";
 import Header from "@editorjs/header";
 import SimpleImage from "@editorjs/simple-image";
 import List from "@editorjs/list";
-import Parser from "html-react-parser";
-import edjsHTML from "editorjs-html";
 
-import { PostComment } from "../comment/PostComment";
-import { AllComments } from "../comment/AllComments";
+
 import authenticatedHttp from "../../../../services/authenticatedHttpService";
 import AuthContext from "../../../../context/auth-context";
 import defaultHttp from "../../../../services/defaultHttpService";
-import { AiFillDelete, AiFillEdit } from "react-icons/ai";
-const edjsParser = edjsHTML();
-
-const ConvertInToHtml = ({ item }) => {
-  return Parser(item);
-};
+import { AddPostCategory } from "../write/AddPostCategory";
 
 const EditPost = () => {
   const { id: postId } = useParams();
 
-  const navigate = useNavigate();
-  const location = useLocation();
-  const path = location.pathname.split("/")[2];
   const [post, setPost] = useState({});
   const PF = process.env.REACT_APP_FILE_FOLDER_URL;
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
-  const [updateMode, setUpdateMode] = useState(false);
-  const [userInformation, setUserInformation] = useState({});
+  const [categories, setCategories] = useState([]);
   const { user: userData } = useContext(AuthContext);
+  const [changeDescHelper, setChangeDescHelper] = useState(Math.random());
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -42,16 +29,11 @@ const EditPost = () => {
       setPost(res.data);
       setTitle(res.data.title);
       setDesc(res.data.desc);
+      setCategories(res.data.categories);
+      setChangeDescHelper(Math.random());
     };
     fetchPost();
-  }, [path]);
-
-  useEffect(() => {
-    (async () => {
-      const { data } = await authenticatedHttp.get(`/profiles/my-profile`);
-      setUserInformation(data.profile);
-    })();
-  }, [userData]);
+  }, [postId]);
 
   useEffect(() => {
     if (post?.desc) {
@@ -81,23 +63,15 @@ const EditPost = () => {
         },
       });
     }
-  }, [updateMode]);
-
-  const handleDelete = async () => {
-    try {
-      await defaultHttp.delete(`/posts/${path}`, {
-        data: { user: userData.user._id },
-      });
-      navigate("/");
-    } catch (error) {}
-  };
+  }, [changeDescHelper]);
 
   const handleUpdate = async () => {
     try {
-      await defaultHttp.put(`/posts/${path}`, {
+      await authenticatedHttp.put(`/posts/${postId}`, {
         user: userData.user._id,
         title,
         desc,
+        categories,
       });
       window.location.reload();
     } catch (error) {}
@@ -107,54 +81,20 @@ const EditPost = () => {
     <div className="w-full max-w-screen-md mx-auto">
       <div className="singlePostWrapper">
         {/* categories */}
-        <div className="mb-6 flex justify-center space-x-3">
-          <ul className="flex mt-6 space-x-3">
-            {post?.categories?.map((category) => {
-              return (
-                <li
-                  key={category?._id}
-                  className="p-2 rounded-full dark:text-palette-java uppercase tracking-widest"
-                >
-                  <Link className="link" to={`/blog/?cat=${category?.name}`}>
-                    {category?.name}
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-          {updateMode && (
-            <div className="flex items-center">
-              <input type="text" placeholder="add category" />
-              <AiOutlinePlus className="p-0.5 bg-green-400 text-white text-2xl cursor-pointer" />
-            </div>
-          )}
+        <div className="mb-4">
+          <AddPostCategory
+            categories={categories}
+            setCategories={setCategories}
+          />
         </div>
         <div className="w-full flex flex-col items-center mb-10">
-          {updateMode ? (
-            <input
-              type="text"
-              value={title}
-              className="py-2 mb-2 text-3xl text-center text-gray-600 outline-none focus:border-b focus:border-gray-600"
-              onChange={(e) => setTitle(e.target.value)}
-              autoFocus
-            />
-          ) : (
-            <>
-              <h1 className="dark:text-palette-gallery font-semibold text-5xl text-center">
-                {title}
-              </h1>
-              {post?.user?._id === userData?.user?._id && (
-                <div className="flex space-x-4 pt-3">
-                  <i onClick={handleDelete}>
-                    <AiFillDelete className="text-red-500 text-3xl" />
-                  </i>
-                  <i onClick={() => setUpdateMode(true)}>
-                    <AiFillEdit className="text-green-500 text-3xl" />
-                  </i>
-                </div>
-              )}
-            </>
-          )}
+          <input
+            type="text"
+            value={title}
+            className="input input-bordered input-md w-full max-w-xs text-3xl font-bold"
+            onChange={(e) => setTitle(e.target.value)}
+            autoFocus
+          />
         </div>
 
         <div className="text-palette-alto w-full flex justify-center divide-x divide-palette-nevada mb-10">
@@ -178,50 +118,22 @@ const EditPost = () => {
             alt=""
           />
         )}
-
-        {updateMode ? (
-          <div
-            id="editPostEditorJs"
-            className="prose dark:prose-invert lg:prose-xl max-w-none"
-          />
-        ) : (
-          <article className="prose dark:prose-invert lg:prose-xl max-w-none">
-            {desc &&
-              edjsParser.parse(post.desc).map((item, index) => {
-                return <ConvertInToHtml key={index} item={item} />;
-              })}
-          </article>
-        )}
+        <div id="editPostEditorJs" className="prose lg:prose-xl max-w-none" />
 
         <div className="flex space-x-3">
-          {updateMode && (
-            <button
-              onClick={() => {
-                setUpdateMode(false);
-              }}
-              className="px-8 py-4 text-gray-700 border border-red-500 rounded"
-            >
-              Cancel Edit
-            </button>
-          )}
-          {updateMode && (
-            <button
-              onClick={handleUpdate}
-              className="px-8 py-4 text-white bg-green-500 rounded"
-            >
-              Save Edit
-            </button>
-          )}
-        </div>
-        <div className="py-14">
-          <h4 className="dark:text-palette-java text-4xl font-semibold mb-8">
-            Write comment
-          </h4>
-          <PostComment userInformation={userInformation} post={post} />
-          <h4 className="dark:text-palette-java text-4xl font-semibold my-8">
-            Comments
-          </h4>
-          <AllComments userInformation={userInformation} post={post} />
+          <Link
+            to="/admin/manage-posts"
+            className="px-8 py-4 text-gray-700 border border-red-500 rounded"
+          >
+            Cancel Edit
+          </Link>
+
+          <button
+            onClick={handleUpdate}
+            className="px-8 py-4 text-white bg-green-500 rounded"
+          >
+            Save Edit
+          </button>
         </div>
       </div>
     </div>

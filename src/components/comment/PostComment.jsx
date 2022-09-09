@@ -1,13 +1,13 @@
-import React, { useEffect, useContext, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useContext } from "react";
 import { Link } from "react-router-dom";
-import noUserPicture from "../../../../assets/icons/userimg.png";
 import ReactStars from "react-rating-stars-component";
-import axios from "axios";
-import authenticatedHttp from "../../../../services/authenticatedHttpService";
-import AuthContext from "../../../../context/auth-context";
+import Gravatar from "react-gravatar";
+import toast from "react-hot-toast";
 
-export const PostComment = ({ userInformation, post }) => {
-  const PF = process.env.REACT_APP_FILE_FOLDER_URL;
+import authenticatedHttp from "../../services/authenticatedHttpService";
+import AuthContext from "../../context/auth-context";
+
+const PostComment = ({ userInformation, post }) => {
   const userImageElementRef = useRef(null);
   const [userImageElement, setUserImageElement] = useState(null);
   const [comment, setComment] = useState("");
@@ -25,13 +25,18 @@ export const PostComment = ({ userInformation, post }) => {
   const submitHandle = async () => {
     try {
       const { data } = await authenticatedHttp.post("/comments/add-comment", {
-        user: userInformation.account._id,
+        user: userInformation._id,
         desc: comment,
         post: post._id,
         rate: ratingStars,
       });
       setComment("");
+      toast.success(
+        "Comment is submitted. it will be appear after Admin's confirmation",
+        { duration: 8000 }
+      );
     } catch (error) {
+      toast.error("Something went wrong.");
       console.log(error);
     }
   };
@@ -55,20 +60,19 @@ export const PostComment = ({ userInformation, post }) => {
   return (
     <div className="w-full flex flex-col border border-palette-nevada rounded-lg p-4 relative">
       <div className="flex space-x-4 items-center">
-        <img
-          src={
-            userInformation?.avatar
-              ? PF + userInformation?.avatar
-              : noUserPicture
-          }
-          alt="user profile"
-          className="rounded-full w-14 h-14"
-          ref={userImageElementRef}
-        />
+        <div className="avatar cursor-pointer" ref={userImageElementRef}>
+          <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+            <Gravatar
+              email={userData.user.email}
+              alt="user profile"
+              className="rounded-full w-full h-full"
+            />
+          </div>
+        </div>
         <div className="flex justify-between items-center w-full">
           <div className="flex flex-col">
             <p className="dark:text-palette-alto capitalize">
-              {userInformation?.account?.name}
+              {userInformation?.name}
             </p>
             <ReactStars
               count={5}
@@ -105,3 +109,5 @@ export const PostComment = ({ userInformation, post }) => {
     </div>
   );
 };
+
+export default PostComment;

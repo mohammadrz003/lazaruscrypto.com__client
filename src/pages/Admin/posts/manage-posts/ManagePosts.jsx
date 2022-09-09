@@ -14,6 +14,10 @@ const ManagePosts = () => {
   const [randomNumber, setRandomNumber] = useState(Math.random());
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     (async () => {
       try {
         const { data } = await getAllPosts();

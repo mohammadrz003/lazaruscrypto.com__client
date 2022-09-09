@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import authenticatedHttp from "../../../../services/authenticatedHttpService";
+import toast from "react-hot-toast";
+
+import authenticatedHttp from "../../services/authenticatedHttpService";
 
 export const ReplyComment = ({
   comment,
@@ -14,7 +16,7 @@ export const ReplyComment = ({
   const sendReplyHandle = async () => {
     try {
       const { data } = await authenticatedHttp.post("/comments/add-comment", {
-        user: userInformation?.account?._id,
+        user: userInformation?._id,
         desc: commentValue,
         post: post._id,
         rate: 0,
@@ -22,7 +24,12 @@ export const ReplyComment = ({
         replyOnUser: comment.user._id,
       });
       setCommentValue("");
+      toast.success(
+        "Comment is submitted. it will be appear after Admin's confirmation",
+        { duration: 8000 }
+      );
     } catch (error) {
+      toast.error("Something went wrong.");
       console.log(error);
     }
   };
