@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import Layout from "../../layouts/Layout";
 import styles from "./Blog.module.css";
@@ -6,6 +6,12 @@ import CategorySlider from "./CategorySlider";
 import Posts from "./Posts";
 
 const Blog = () => {
+  const [filteredBy, setFilteredBy] = useState("newer");
+
+  const changeFilteredByHandler = (value) => {
+    setFilteredBy(value);
+  };
+
   return (
     <Layout>
       <div className="container mx-auto flex flex-col items-center px-6 py-6 relative">
@@ -15,9 +21,12 @@ const Blog = () => {
           BLOG
         </h1>
         <div className="w-full xl:w-4/5 mb-10">
-          <CategorySlider />
+          <CategorySlider
+            filteredBy={filteredBy}
+            onSetFilteredBy={changeFilteredByHandler}
+          />
         </div>
-        <Posts />
+        <Posts filteredBy={filteredBy} />
       </div>
     </Layout>
   );
