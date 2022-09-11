@@ -3,16 +3,22 @@ import { FiSearch } from "react-icons/fi";
 import { HiOutlineArrowNarrowRight } from "react-icons/hi";
 import { Link } from "react-router-dom";
 import Gravatar from "react-gravatar";
+import { HiOutlineMenuAlt3 } from "react-icons/hi";
+import { IoMdClose } from "react-icons/io";
 
-import logoImage from "../assets/logo.svg";
+import logoImage from "../assets/logoDark.png";
 import styles from "./Navbar.module.css";
 import AuthContext from "../context/auth-context";
 
-const Navbar = () => {
+const Navbar = ({ isSidebarVisible, onChangeSidebarStatus }) => {
   const { user: userData, setUser: setUserData } = useContext(AuthContext);
 
   const logoutHandler = () => {
     setUserData(null);
+  };
+
+  const changeSidebarStatusHandler = () => {
+    onChangeSidebarStatus();
   };
 
   return (
@@ -20,10 +26,10 @@ const Navbar = () => {
       <div className="py-6 flex justify-between items-center border-b dark:border-b-gray-700">
         <div>
           <Link to="/">
-            <img className={styles.logo_img} src={logoImage} alt="logo" />
+            <img className="w-14 lg:w-20 h-auto" src={logoImage} alt="logo" />
           </Link>
         </div>
-        <div className="relative">
+        <div className="hidden lg:block relative">
           <div className="absolute top-1/2 left-3 transform -translate-y-1/2">
             <FiSearch />
           </div>
@@ -35,10 +41,10 @@ const Navbar = () => {
         </div>
         <div>
           {userData ? (
-            <>
-              <div className="dropdown dropdown-end">
+            <div className="flex space-x-4 items-center">
+              <div className="dropdown dropdown-end transform translate-y-1">
                 <div tabIndex={0} className="avatar cursor-pointer">
-                  <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                  <div className="w-7 lg:w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
                     <Gravatar email={userData.user.email} />
                   </div>
                 </div>
@@ -54,11 +60,22 @@ const Navbar = () => {
                   </li>
                 </ul>
               </div>
-            </>
+              {isSidebarVisible ? (
+                <IoMdClose
+                  onClick={changeSidebarStatusHandler}
+                  className="w-7 h-7 cursor-pointer lg:hidden"
+                />
+              ) : (
+                <HiOutlineMenuAlt3
+                  onClick={changeSidebarStatusHandler}
+                  className="w-7 h-7 cursor-pointer lg:hidden"
+                />
+              )}
+            </div>
           ) : (
             <Link to="/login" className="flex items-center space-x-2">
               <span className="font-semibold">Sign in</span>{" "}
-              <HiOutlineArrowNarrowRight className="relative top-[1px] text-lg" />
+              <HiOutlineArrowNarrowRight className=" hidden lg:block relative top-[1px] text-lg" />
             </Link>
           )}
         </div>
