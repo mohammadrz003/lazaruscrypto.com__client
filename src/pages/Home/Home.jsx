@@ -21,7 +21,7 @@ const Home = () => {
 
   return (
     <Layout>
-      <div className="flex px-5 lg:px-20 py-6 h-full relative">
+      <div className="flex flex-col items-center px-5 py-12 lg:flex-row lg:px-20 lg:py-6 h-full relative">
         <img
           className={`${styles.candleImg} z-0 absolute left-1/3 top-1/4 object-cover`}
           src={candlesImage}
@@ -32,14 +32,14 @@ const Home = () => {
         />
 
         <div className={`${styles.blurCircle1} z-[2]`} />
-        <div className="lg:w-1/2 z-10 h-full flex flex-col justify-center">
-          <h2 className="text-7xl lg:text-9xl xl:text-[9rem] font-astraneo lg:leading-none">
+        <div className="lg:w-1/2 mb-6 lg:mb-0 z-10 h-full flex flex-col justify-center">
+          <h2 className="text-7xl md:text-8xl lg:text-8xl xl:text-9xl 2xl:text-[9rem] font-astraneo lg:leading-none">
             MARKET
           </h2>
           <EyesFollowMouse />
         </div>
         <div className="lg:w-1/2 z-10 h-full flex justify-center items-center">
-          {/* <Slider /> */}
+          <Slider />
         </div>
       </div>
     </Layout>

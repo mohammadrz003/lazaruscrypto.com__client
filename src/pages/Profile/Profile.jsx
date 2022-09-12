@@ -49,7 +49,7 @@ const Profile = () => {
 
   return (
     <Layout>
-      <div className="flex justify-center items-center w-full px-20 py-6 h-full relative">
+      <div className="flex justify-center items-center w-full px-5 lg:px-20 py-6 h-full relative">
         <div className="flex flex-col w-full max-w-lg dark:bg-[#262726] rounded-md p-5 lg:p-8">
           <div className="avatar mb-6">
             <div className="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">

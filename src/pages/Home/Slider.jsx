@@ -25,11 +25,13 @@ export default function Slider() {
                 src={post.image}
                 alt="nature"
               />
-              <span className="font-semibold text-gray-800 text-lg mt-3">
+              <span className="font-semibold text-gray-800 text-sm md:text-lg md:mt-3 lg:text-sm xl:text-base 2xl:text-lg mt-2 xl:mt-3">
                 {post.date}
               </span>
-              <h4 className="font-bold text-gray-900 text-xl mt-3">
-                {post.title}
+              <h4 className="font-bold text-gray-900 lg:text-base md:text-xl mdmt-3 xl:text-lg 2xl:text-xl mt-2 xl:mt-3">
+                {post.title.length > 50
+                  ? `${post.title.substring(0, 50)}...`
+                  : post.title}
               </h4>
             </SwiperSlide>
           );

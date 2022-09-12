@@ -73,10 +73,23 @@ const Navbar = ({ isSidebarVisible, onChangeSidebarStatus }) => {
               )}
             </div>
           ) : (
-            <Link to="/login" className="flex items-center space-x-2">
-              <span className="font-semibold">Sign in</span>{" "}
-              <HiOutlineArrowNarrowRight className=" hidden lg:block relative top-[1px] text-lg" />
-            </Link>
+            <div className="flex space-x-4 items-center">
+              <Link to="/login" className="flex items-center space-x-2">
+                <span className="font-semibold">Sign in</span>
+                <HiOutlineArrowNarrowRight className=" hidden lg:block relative top-[1px] text-lg" />
+              </Link>
+              {isSidebarVisible ? (
+                <IoMdClose
+                  onClick={changeSidebarStatusHandler}
+                  className="w-7 h-7 cursor-pointer lg:hidden"
+                />
+              ) : (
+                <HiOutlineMenuAlt3
+                  onClick={changeSidebarStatusHandler}
+                  className="w-7 h-7 cursor-pointer lg:hidden"
+                />
+              )}
+            </div>
           )}
         </div>
       </div>

@@ -1,6 +1,6 @@
 .homeSwiper {
-  width: 340px;
-  height: 370px;
+  width: 280px;
+  height: 310px;
 }
 
 .homeSwiperSlide {
@@ -12,4 +12,32 @@
   background-color: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(24px);
   overflow: hidden;
+}
+
+@media screen and (min-width: 768px) {
+  .homeSwiper {
+    width: 340px;
+    height: 370px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .homeSwiper {
+    width: 250px;
+    height: 300px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .homeSwiper {
+    width: 300px;
+    height: 330px;
+  }
+}
+
+@media screen and (min-width: 1536px) {
+  .homeSwiper {
+    width: 340px;
+    height: 370px;
+  }
 }
