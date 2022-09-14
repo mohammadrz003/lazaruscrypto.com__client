@@ -16,7 +16,7 @@ const Blog = () => {
     <Layout>
       <div className="container mx-auto flex flex-col items-center px-6 py-6 relative">
         <h1
-          className={`${styles.stroke_text_white} text-center tracking-widest lg:text-[9rem] leading-none mb-14`}
+          className={`${styles.stroke_text_white} text-7xl sm:text-8xl md:9xl lg:text-[9rem] text-center tracking-widest leading-none mb-14`}
         >
           BLOG
         </h1>

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
+import styles from "./Layout.module.css";
 
 const Layout = ({ children }) => {
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);
@@ -11,7 +12,7 @@ const Layout = ({ children }) => {
   };
 
   return (
-    <div className="flex w-full overflow-hidden min-h-screen dark:bg-palette-dark dark:text-palette-white">
+    <div className={`${styles.layout} relative flex w-full min-h-screen dark:bg-palette-dark dark:text-palette-white`}>
       <Sidebar
         isSidebarVisible={isSidebarVisible}
         onChangeSidebarStatus={changeSidebarStatusHandler}

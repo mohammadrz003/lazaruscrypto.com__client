@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import Layout from "../../layouts/Layout";
 import { Toast } from "../../components/toast/Toast";
@@ -38,8 +38,14 @@ const Home = () => {
           </h2>
           <EyesFollowMouse />
         </div>
-        <div className="lg:w-1/2 z-10 h-full flex justify-center items-center">
-          <Slider />
+        <div className="lg:w-1/2 z-10 h-full flex flex-col justify-center items-center">
+          {}
+          <>
+            <Slider />
+            <Link className="mt-4 animate-bounce" to="/posts">
+              See All Posts
+            </Link>
+          </>
         </div>
       </div>
     </Layout>

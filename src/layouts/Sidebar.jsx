@@ -30,7 +30,7 @@ const Sidebar = ({ isSidebarVisible, onChangeSidebarStatus }) => {
       <div
         className={`fixed ${
           isSidebarVisible ? "left-0" : "-left-2/3"
-        } top-[80px] bottom-0 w-2/3 z-50 transition-all duration-300 ease-in lg:w-auto lg:flex flex-col lg:sticky lg:top-0 lg:h-screen overflow-auto justify-between items-center px-4 py-6 dark:bg-[#262726]`}
+        } top-[80px] bottom-0 w-2/3 z-50 transition-all duration-300 ease-in lg:w-auto lg:flex flex-col lg:sticky lg:top-0 lg:bottom-0 lg:left-0 lg:h-screen overflow-auto justify-between items-center px-4 py-6 dark:bg-[#262726]`}
       >
         <div
           onClick={toggleMenuHandler}

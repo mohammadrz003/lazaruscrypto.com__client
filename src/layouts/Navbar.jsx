@@ -7,7 +7,6 @@ import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { IoMdClose } from "react-icons/io";
 
 import logoImage from "../assets/logoDark.png";
-import styles from "./Navbar.module.css";
 import AuthContext from "../context/auth-context";
 
 const Navbar = ({ isSidebarVisible, onChangeSidebarStatus }) => {
@@ -22,7 +21,7 @@ const Navbar = ({ isSidebarVisible, onChangeSidebarStatus }) => {
   };
 
   return (
-    <header className="px-6 sticky top-0 z-30 bg-palette-dark">
+    <header className="px-6 sticky top-0 z-[100] bg-palette-dark">
       <div className="py-6 flex justify-between items-center border-b dark:border-b-gray-700">
         <div>
           <Link to="/">
