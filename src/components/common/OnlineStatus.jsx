@@ -4,7 +4,6 @@ import { MdPerson } from "react-icons/md";
 
 const OnlineStatus = () => {
   const [onlineMembersNumber, setOnlineMembersNumber] = useState(0);
-  const [randomNumber, setRandomNumber] = useState(Math.random());
 
   useEffect(() => {
     var d = Math.random();
@@ -24,11 +23,10 @@ const OnlineStatus = () => {
       // 9% chance of being here
       setOnlineMembersNumber(Math.round(Math.random() * 500 + 2500));
     }
-  }, [randomNumber]);
+  }, []);
 
   return (
     <div
-      onClick={() => setRandomNumber(Math.random())}
       className="fixed bottom-[5%] right-[5%] lg:right-[2.5%] z-[1000]"
     >
       <div class="indicator tab tab-lifted tab-active rounded-md">
