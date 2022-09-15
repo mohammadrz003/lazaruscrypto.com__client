@@ -50,7 +50,7 @@ const SinglePost = () => {
   return (
     <Layout>
       <div className="h-full w-full">
-        <div className="w-full max-w-screen-md mx-auto py-10">
+        <div className="w-full max-w-screen-md mx-auto py-10 px-5">
           <ul className="flex justify-center space-x-3 text-center text-palette-green font-semibold text-xl mb-7">
             {postData.categories.map((category) => {
               return <li key={category._id}>{category.name}</li>;
@@ -64,7 +64,7 @@ const SinglePost = () => {
             src={`${MEDIA_FOLDER}/${postData.photo}`}
             alt="nature"
           />
-          <div className="flex justify-between mb-12">
+          <div className="flex flex-col space-x-1 lg:flex-row justify-between mb-12">
             <p>Author: {postData.user.username}</p>
             <p>On: {new Date(postData.createdAt).toDateString()}</p>
           </div>

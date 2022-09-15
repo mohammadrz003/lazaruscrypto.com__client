@@ -18,6 +18,7 @@ import EditPost from "./pages/Admin/posts/manage-posts/EditPost";
 import ManageComments from "./pages/Admin/comments/ManageComments";
 import "./App.css";
 import Dashboard from "./pages/Admin/Dashboard";
+import Contact from "./pages/Contact/Contact";
 
 const App = () => {
   return (
@@ -36,6 +37,7 @@ const App = () => {
           <Route path="manage-posts/edit/:id" element={<EditPost />}></Route>
           <Route path="manage-comments" element={<ManageComments />}></Route>
         </Route>
+        <Route path="contact" element={<Contact />} />
       </Routes>
       <Toaster />
     </div>

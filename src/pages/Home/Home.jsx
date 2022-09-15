@@ -39,7 +39,6 @@ const Home = () => {
           <EyesFollowMouse />
         </div>
         <div className="lg:w-1/2 z-10 h-full flex flex-col justify-center items-center">
-          {}
           <>
             <Slider />
             <Link className="mt-4 animate-bounce" to="/posts">

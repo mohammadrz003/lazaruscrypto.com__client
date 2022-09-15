@@ -2,7 +2,7 @@ import defaultHttp from "./defaultHttpService";
 import authenticatedHttp from "./authenticatedHttpService";
 
 export const getAllPosts = async (search) => {
-  return defaultHttp.get(`/posts${search}`);
+  return defaultHttp.get(`/posts${search ? search : ""}`);
 };
 
 export const getSinglePost = async (id) => {

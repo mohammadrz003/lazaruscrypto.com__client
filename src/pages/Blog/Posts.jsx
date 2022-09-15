@@ -59,9 +59,15 @@ const Posts = ({ filteredBy }) => {
   return (
     <div className="w-full xl:w-4/5 lg:bg-[#262726]">
       <ul className="space-y-5 lg:space-y-0 lg:p-7">
-        {filterAllPosts.map((post) => {
-          return <Post key={post._id} post={post} />;
-        })}
+        {filterAllPosts.length > 0 ? (
+          filterAllPosts.map((post) => {
+            return <Post key={post._id} post={post} />;
+          })
+        ) : (
+          <p className="text-center text-lg text-gray-500">
+            Nothing has found.
+          </p>
+        )}
       </ul>
     </div>
   );
