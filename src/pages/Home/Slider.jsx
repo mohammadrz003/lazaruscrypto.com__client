@@ -31,7 +31,7 @@ export default function Slider() {
         effect={"cards"}
         grabCursor={true}
         modules={[EffectCards]}
-        className={styles.homeSwiper}
+        className={`${styles.homeSwiper}`}
       >
         {allPosts.length > 0 ? (
           allPosts.slice(0, 5).map((post) => {
@@ -40,7 +40,7 @@ export default function Slider() {
                 <img
                   className="object-cover w-full h-48 rounded-lg"
                   src={`${MEDIA_FOLDER}/${post.photo}`}
-                  alt="nature"
+                  alt="media"
                 />
                 <span className="font-semibold text-gray-800 text-sm md:text-lg md:mt-3 lg:text-sm xl:text-base 2xl:text-lg mt-2 xl:mt-3">
                   {new Date(post.createdAt).toDateString()}

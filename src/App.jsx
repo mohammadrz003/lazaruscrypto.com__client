@@ -19,10 +19,12 @@ import ManageComments from "./pages/Admin/comments/ManageComments";
 import "./App.css";
 import Dashboard from "./pages/Admin/Dashboard";
 import Contact from "./pages/Contact/Contact";
+import OnlineStatus from "./components/common/OnlineStatus";
 
 const App = () => {
   return (
     <div className="App">
+      <OnlineStatus />
       <Routes>
         <Route index element={<Home />} />
         <Route path="register" element={<Register />} />

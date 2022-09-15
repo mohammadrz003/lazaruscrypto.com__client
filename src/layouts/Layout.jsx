@@ -12,7 +12,7 @@ const Layout = ({ children }) => {
   };
 
   return (
-    <div className={`${styles.layout} relative flex w-full min-h-screen dark:bg-palette-dark dark:text-palette-white`}>
+    <div className={`${styles.layout} flex w-full min-h-screen dark:bg-palette-dark dark:text-palette-white`}>
       <Sidebar
         isSidebarVisible={isSidebarVisible}
         onChangeSidebarStatus={changeSidebarStatusHandler}

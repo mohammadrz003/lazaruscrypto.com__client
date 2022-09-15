@@ -25,12 +25,12 @@ const Sidebar = ({ isSidebarVisible, onChangeSidebarStatus }) => {
         onClick={() => onChangeSidebarStatus()}
         className={`${
           isSidebarVisible ? "block" : "hidden"
-        } fixed top-[80px] bottom-0 w-full z-40 dark:bg-gray-900 opacity-60 lg:hidden`}
+        } fixed top-[76px] bottom-0 w-full z-40 dark:bg-gray-900 opacity-60 lg:hidden`}
       />
       <div
         className={`fixed ${
           isSidebarVisible ? "left-0" : "-left-2/3"
-        } top-[80px] bottom-0 w-2/3 z-50 transition-all duration-300 ease-in lg:w-auto lg:flex flex-col lg:sticky lg:top-0 lg:bottom-0 lg:left-0 lg:h-screen overflow-auto justify-between items-center px-4 py-6 dark:bg-[#262726]`}
+        } top-[76px] bottom-0 w-2/3 z-50 transition-all duration-300 ease-in lg:w-auto lg:flex flex-col lg:sticky lg:top-0 lg:bottom-0 lg:left-0 lg:h-screen overflow-auto justify-between items-center px-4 py-6 dark:bg-[#262726]`}
       >
         <div
           onClick={toggleMenuHandler}
