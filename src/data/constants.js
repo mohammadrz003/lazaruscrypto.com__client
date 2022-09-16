@@ -1,4 +1,4 @@
-export const MEDIA_FOLDER = "http://localhost:5000/uploads";
+export const MEDIA_FOLDER = "<server_url>/uploads";
 
 export const MENU_ITEMS = [
   {
